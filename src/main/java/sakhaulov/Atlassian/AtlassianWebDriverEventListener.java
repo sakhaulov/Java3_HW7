@@ -41,7 +41,7 @@ public class AtlassianWebDriverEventListener implements WebDriverEventListener {
 
     @Override
     public void beforeNavigateTo(String url, WebDriver driver) {
-        System.out.println("Navigating to " + url);
+        System.out.println("Navigating to: " + url);
     }
 
     @Override
@@ -81,7 +81,7 @@ public class AtlassianWebDriverEventListener implements WebDriverEventListener {
 
     @Override
     public void beforeFindBy(By by, WebElement element, WebDriver driver) {
-        System.out.println("Trying to find element with locator" + by.toString());
+        System.out.println("Trying to find element with locator: " + by.toString());
     }
 
     @Override
@@ -91,7 +91,7 @@ public class AtlassianWebDriverEventListener implements WebDriverEventListener {
 
     @Override
     public void beforeClickOn(WebElement element, WebDriver driver) {
-        System.out.println("Trying to click on element " + element.getTagName());
+        System.out.println("Trying to click on element: " + element.getTagName());
     }
 
     @Override
