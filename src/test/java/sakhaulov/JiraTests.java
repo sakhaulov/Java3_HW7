@@ -1,5 +1,7 @@
 package sakhaulov;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -29,6 +31,7 @@ public class JiraTests extends AbstractTest {
 
     @Test
     @DisplayName("Переход на доску проекта")
+    @Severity(SeverityLevel.CRITICAL)
     void visitProjectBoard() {
 
         getDriver().navigate().to("https://start.atlassian.com/");
@@ -44,6 +47,7 @@ public class JiraTests extends AbstractTest {
 
     @Test
     @DisplayName("Создание баг-репорта")
+    @Severity(SeverityLevel.CRITICAL)
     void createBugTest() {
 
         String bugName = "MyTestBugAutomated" + (int)(Math.random() * (1000 - 1)) + 1;
@@ -84,6 +88,7 @@ public class JiraTests extends AbstractTest {
 
     @Test
     @DisplayName("Создание команды")
+    @Severity(SeverityLevel.CRITICAL)
     void startTeamTest() {
 
         String teamName = "MyTestTeamAutomated" + (int)(Math.random() * (1000 - 1)) + 1;
@@ -109,7 +114,8 @@ public class JiraTests extends AbstractTest {
 
         //Close "get started" modal window
         getDriver().switchTo().activeElement();
-        getDriver().findElement(By.cssSelector(".css-eubphy")).click();
+        List<WebElement> webElements = getDriver().findElements(By.cssSelector(".css-eubphy"));
+        if (webElements.size() > 0) webElements.get(0).click();
 
         //Assertions
         Assertions.assertTrue(getDriver()
@@ -121,7 +127,8 @@ public class JiraTests extends AbstractTest {
 
     @Test
     @DisplayName("Создание собственного типа документа")
-    void addingStandartIssueTypeTest() {
+    @Severity(SeverityLevel.CRITICAL)
+    void addingStandardIssueTypeTest() {
 
         String testIssueTypeName = "TestIssueType" + (int) (Math.random() * (1000 - 1)) + 1;
 

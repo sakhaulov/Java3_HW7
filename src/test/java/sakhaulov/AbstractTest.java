@@ -2,19 +2,20 @@ package sakhaulov;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.events.EventFiringDecorator;
-import org.openqa.selenium.support.events.WebDriverListener;
-import sakhaulov.Atlassian.AtlassianWebDriverListener;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+import sakhaulov.Atlassian.AtlassianWebDriverEventListener;
+import sakhaulov.Utils.TestUtils;
 
 import java.time.Duration;
 
 public abstract class AbstractTest {
 
-    private static WebDriver driver;
+    private static EventFiringWebDriver driver;
 
     @BeforeAll
     static void init() {
@@ -22,11 +23,19 @@ public abstract class AbstractTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
         options.addArguments("start-maximized");
-        WebDriver original = new ChromeDriver(options);
-        WebDriverListener listener = new AtlassianWebDriverListener();
-        driver = new EventFiringDecorator(listener).decorate(original);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
+        driver = new EventFiringWebDriver(new ChromeDriver(options));
+        driver.register(new AtlassianWebDriverEventListener());
+
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+    }
+
+    @AfterEach
+    void getInfo() {
+        System.out.println("*** Browser Logs ***");
+        String fileName = "failure-" + System.currentTimeMillis() + ".png";
+        TestUtils.makeScreenshot(driver, fileName);
+        TestUtils.getLogs(driver);
     }
 
 //    @BeforeEach
@@ -37,10 +46,11 @@ public abstract class AbstractTest {
 
     @AfterAll
     public static void closeDriver() {
-        driver.quit();
+        if (driver != null) driver.quit();
     }
 
-    public static WebDriver getDriver() {
+    public static EventFiringWebDriver getDriver() {
         return driver;
     }
+
 }

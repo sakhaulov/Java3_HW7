@@ -1,7 +1,8 @@
 package sakhaulov;
 
-import com.codeborne.selenide.ex.ElementNotFound;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,7 @@ public class AuthorizationPositiveTests extends AbstractTest{
     @Test
     @Feature("Авторизация")
     @DisplayName("Авторизация с валидными данными")
+    @Severity(SeverityLevel.BLOCKER)
     void authValidDataTest() {
 
         getDriver().navigate().to("https://www.atlassian.com/");
@@ -32,7 +34,7 @@ public class AuthorizationPositiveTests extends AbstractTest{
         //Authorization assertion
         new WebDriverWait(getDriver(), Duration.ofSeconds(5))
                 .until(ExpectedConditions.urlContains("start.atlassian.com"));
-        Assertions.assertTrue(getDriver().findElements(By.xpath(".//*[contains(text(), 'sa1khaulov')]")).size() > 0,
+        Assertions.assertTrue(getDriver().findElements(By.xpath(".//*[contains(text(), 'sakhaulov')]")).size() > 0,
                 "Ошибка авторизации");
     }
 }

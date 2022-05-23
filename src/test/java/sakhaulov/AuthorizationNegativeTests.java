@@ -1,6 +1,8 @@
 package sakhaulov;
 
 import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,6 +16,7 @@ public class AuthorizationNegativeTests extends AbstractTest{
     @Test
     @Feature("Авторизация")
     @DisplayName("Авторизация с неверным паролем")
+    @Severity(SeverityLevel.CRITICAL)
     @Disabled
     void authWrongPassTest() {
 
