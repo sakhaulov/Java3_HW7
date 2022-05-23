@@ -12,6 +12,7 @@ import java.util.List;
 
 public class AtlassianWebDriverListener implements WebDriverListener {
 
+//    NOT USED ATM
 //    goes into AbstractTest -> init()
 //    WebDriverListener listener = new AtlassianWebDriverEventListener();
 //    driver = new EventFiringDecorator(listener).decorate(original);
