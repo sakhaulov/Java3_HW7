@@ -1,15 +1,18 @@
 package sakhaulov;
 
+import io.qameta.allure.Feature;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import sakhaulov.Atlassian.AtlassianPages.IndexPage;
 
 import java.time.Duration;
 
 public class AuthorizationNegativeTests extends AbstractTest{
 
     @Test
+    @Feature("Авторизация")
     @DisplayName("Авторизация с неверным паролем")
     @Disabled
     void authWrongPassTest() {

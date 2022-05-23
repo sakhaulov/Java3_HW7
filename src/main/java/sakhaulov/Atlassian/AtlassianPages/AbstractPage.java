@@ -1,4 +1,4 @@
-package sakhaulov;
+package sakhaulov.Atlassian.AtlassianPages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;

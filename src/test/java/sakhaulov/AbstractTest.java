@@ -6,6 +6,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.events.EventFiringDecorator;
+import org.openqa.selenium.support.events.WebDriverListener;
+import sakhaulov.Atlassian.AtlassianWebDriverListener;
 
 import java.time.Duration;
 
@@ -19,8 +22,11 @@ public abstract class AbstractTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
         options.addArguments("start-maximized");
-        driver = new ChromeDriver(options);
+        WebDriver original = new ChromeDriver(options);
+        WebDriverListener listener = new AtlassianWebDriverListener();
+        driver = new EventFiringDecorator(listener).decorate(original);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
     }
 
 //    @BeforeEach

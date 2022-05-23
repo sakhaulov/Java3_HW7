@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import sakhaulov.Atlassian.AtlassianPages.*;
 
 import java.time.Duration;
 import java.util.List;
@@ -135,7 +136,7 @@ public class JiraTests extends AbstractTest {
                 .clickSettingsIssues();
 
         //Issue types page
-        IssueTypesPage  issueTypesPage = new IssueTypesPage(getDriver());
+        IssueTypesPage issueTypesPage = new IssueTypesPage(getDriver());
         issueTypesPage.clickAddIssueType();
         new WebDriverWait(getDriver(), Duration.ofSeconds(3));
 
